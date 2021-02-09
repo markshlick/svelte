@@ -148,7 +148,11 @@ export function init(component, options, instance, create_fragment, not_equal, p
 			const nodes = children(options.target);
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			$$.fragment && $$.fragment!.l(nodes);
-			nodes.forEach(detach);
+			nodes.forEach((node: ChildNode) => {
+				if (node !== options.anchor) {
+					detach(node);
+				}
+			});
 		} else {
 			// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 			$$.fragment && $$.fragment!.c();
